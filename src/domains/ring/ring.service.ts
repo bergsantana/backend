@@ -35,12 +35,17 @@ export class RingService {
       return await this.ringRepository.save(ring);
     } catch (error) {
       // return { errorMsg: 'This ring is already taken' };
+      console.log(error)
       return { errorMsg: error };
     }
   }
 
   async findAll() {
-    return await this.ringRepository.find();
+    return await this.ringRepository.find({
+      relations: {
+        Bearer: true,
+      }
+    });
   }
 
   async update(ring: Ring) {

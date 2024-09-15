@@ -3,7 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  OneToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   Unique,
@@ -31,7 +31,7 @@ export class Ring {
   @Column({ name: 'BEARER' })
   bearer: string;
 
-  @OneToOne(() => Bearer, (bearer) => bearer.ring, { cascade: true })
-  @JoinColumn({ name: 'RINGNAME', referencedColumnName: 'ring' })
+  @ManyToOne(() => Bearer, (bearer) => bearer.ring, { cascade: true })
+  @JoinColumn({ name: 'RING', referencedColumnName: 'ring' })
   Bearer: Bearer;
 }
